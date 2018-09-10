@@ -843,6 +843,13 @@ void Obstacle::SetLaneGraphFeature(Feature* feature) {
       speed * FLAGS_prediction_duration +
       0.5 * FLAGS_max_acc * FLAGS_prediction_duration *
       FLAGS_prediction_duration, FLAGS_min_prediction_length);
+  if (FLAGS_prediction_offline_mode) {
+    double timw_window = 1.5;
+    road_graph_distance = std::max(
+        speed * timw_window +
+        0.5 * FLAGS_max_acc * timw_window * timw_window,
+        FLAGS_min_prediction_length);
+  }
 
   int seq_id = 0;
   int curr_lane_count = 0;
