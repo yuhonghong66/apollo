@@ -159,8 +159,8 @@ class TrajectoryToSample(object):
                 seq = fea.lane.lane_graph.lane_sequence[j]
                 if len(seq.lane_segment) == 0:
                     continue
-                if seq.has_virtual_lane:
-                    continue
+                # if seq.has_virtual_lane:
+                #     continue
                 predict_lane_ids = []
                 for k in range(len(seq.lane_segment)):
                     if seq.lane_segment[k].HasField('lane_id'):
