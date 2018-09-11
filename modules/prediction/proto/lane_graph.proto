@@ -36,6 +36,7 @@ message LaneSegment {
     optional uint32 lane_turn_type = 4 [default = 0];
     repeated LanePoint lane_point = 5;
     optional double total_length = 6 [default = 0.0];
+    optional bool is_virtual_lane = 7 [default = false];
 }
 
 message NearbyObstacle {
@@ -81,6 +82,8 @@ message LaneSequence {
     repeated NearbyObstacle left_nearby_obstacle = 14;
     // nearby obstacles on the right neighbor lane sequence
     repeated NearbyObstacle right_nearby_obstacle = 15;
+
+    optional bool has_virtual_lane = 16 [default = false];
 }
 
 message LaneGraph {

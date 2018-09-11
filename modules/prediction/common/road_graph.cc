@@ -87,6 +87,9 @@ void RoadGraph::ComputeLaneSequence(
   LaneSegment lane_segment;
   lane_segment.set_lane_id(lane_info_ptr->id().id());
   lane_segment.set_start_s(start_s);
+  if (PredictionMap::IsVirtualLane(lane_segment.lane_id())) {
+    lane_segment.set_is_virtual_lane(true);
+  }
   lane_segment.set_lane_turn_type(
       PredictionMap::LaneTurnType(lane_info_ptr->id().id()));
   if (accumulated_s + lane_info_ptr->total_length() - start_s >= length_) {
@@ -103,6 +106,12 @@ void RoadGraph::ComputeLaneSequence(
     LaneSequence* sequence = lane_graph_ptr->add_lane_sequence();
     *sequence->mutable_lane_segment() = {lane_segments->begin(),
                                          lane_segments->end()};
+    for (const auto& lane_segment : sequence->lane_segment()) {
+      if (lane_segment.is_virtual_lane()) {
+        sequence->set_has_virtual_lane(true);
+        break;
+      }
+    }
     sequence->set_label(0);
   } else {
     const double successor_accumulated_s =
