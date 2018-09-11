@@ -151,9 +151,15 @@ class TrajectoryToSample(object):
                 continue
 
             seq_size = len(fea.lane.lane_graph.lane_sequence)
+            if seq_size > 5:
+                print("Too many lane sequences, skip")
+                continue
+
             for j in range(seq_size):
                 seq = fea.lane.lane_graph.lane_sequence[j]
                 if len(seq.lane_segment) == 0:
+                    continue
+                if seq.has_virtual_lane:
                     continue
                 predict_lane_ids = []
                 for k in range(len(seq.lane_segment)):

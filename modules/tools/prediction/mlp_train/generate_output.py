@@ -47,6 +47,8 @@ def extract_mlp_features(filename):
             lane_seq = feature.lane.lane_graph.lane_sequence[i]
             if len(lane_seq.features.mlp_features) != mlp_feature_size:
                 continue
+            if not lane_seq.HasField('label') or lane_seq.label < -10:
+                continue
             mlp_feature = []
             for i in range(mlp_feature_size):
                 mlp_feature.append(lane_seq.features.mlp_features[i])
