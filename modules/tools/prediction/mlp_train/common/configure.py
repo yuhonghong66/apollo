@@ -21,7 +21,8 @@ parameters = {
         'train_data_rate': 0.8,
         'size_obstacle_feature': 22,
         'size_lane_sequence_feature': 40,
-        'dim_input': 22 + 40,
+        'size_interaction_feature': 8,
+        'dim_input': 22 + 8 + 40,
         'dim_hidden_1': 30,
         'dim_hidden_2': 15,
         'dim_output': 1
