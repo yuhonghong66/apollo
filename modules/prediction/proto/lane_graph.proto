@@ -92,9 +92,9 @@ message LaneSequence {
     // nearby obstacles on the left neighbor lane sequence
     repeated NearbyObstacle left_nearby_obstacle = 17;
     // nearby obstacles on the right neighbor lane sequence
-    repeated NearbyObstacle right_nearby_obstacle = 16;
+    repeated NearbyObstacle right_nearby_obstacle = 18;
 
-    optional bool has_virtual_lane = 17 [default = false];
+    optional bool has_virtual_lane = 19 [default = false];
 }
 
 message LaneGraph {
